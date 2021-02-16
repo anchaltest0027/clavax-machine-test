@@ -1,0 +1,72 @@
+<h6>
+  Basic Info (* denotes mandatory fields)
+</h6>
+<button class="btn btn-primary pull-right" (click)="redirect()"> Go to list</button>
+<div [formGroup]="basicInfoform">
+  <div class="form-group">
+    <label for="email" class="required">Student Name:</label>
+    <input type="text" class="form-control" id="name" formControlName="student_name">
+  </div>
+  <div *ngIf="basicInfoform.controls['student_name'].errors && basicInfoform.controls['student_name'].dirty" class="error-msg">
+    <div [hidden]="!basicInfoform.controls['student_name'].errors.required" class="alert alert-danger">Name is required !.</div>
+    <div [hidden]="!basicInfoform.controls['student_name'].errors.pattern" class="alert alert-danger">Only Aplhabets and spaces !.</div>
+    <div [hidden]="!basicInfoform.controls['student_name'].errors.maxlength" class="alert alert-danger">Only 56 characters allowed !.</div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="required">Email:</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+  </div>
+  <div *ngIf="basicInfoform.controls['email'].errors && basicInfoform.controls['email'].dirty" class="error-msg">
+    <div [hidden]="!basicInfoform.controls['email'].errors.required" class="alert alert-danger">Email is required !.</div>
+    <div [hidden]="!basicInfoform.controls['email'].errors.pattern" class="alert alert-danger">Enter valid Email !.</div>
+    <div [hidden]="!basicInfoform.controls['email'].errors.maxlength" class="alert alert-danger">Only 112 characters allowed !.</div>
+
+  </div>
+  <div class="form-group">
+    <label for="mno" class="required">Mobile:</label>
+    <input type="text" class="form-control" id="mobile" formControlName="mobile" onkeydown="javascript: return event.keyCode === 8 ||
+                                  event.keyCode === 46 ?
+                                  true : !isNaN(Number(event.key))">
+  </div>
+  <div *ngIf="basicInfoform.controls['mobile'].errors && basicInfoform.controls['mobile'].dirty" class="error-msg">
+    <div [hidden]="!basicInfoform.controls['mobile'].errors.required" class="alert alert-danger">Mobile No is required !.</div>
+    <div [hidden]="!basicInfoform.controls['mobile'].errors.maxlength" class="alert alert-danger">Max 10 characters allowed !.</div>
+    <div [hidden]="!basicInfoform.controls['mobile'].errors.minlength" class="alert alert-danger">Min 10 characters allowed !.</div>
+    <div [hidden]="!basicInfoform.controls['mobile'].errors.pattern" class="alert alert-danger">Only digits allowed !.</div>
+
+  </div>
+  <div class="form-group">
+    <label for="dob" class="required">Date Of Birth:</label>
+    <mat-form-field class="form-control">
+      <input matInput [matDatepicker]="picker" formControlName="dob" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!--<input type="text" class="form-control" id="dob" formControlName="dob">-->
+  </div>
+  <div *ngIf="basicInfoform.controls['dob'].errors && basicInfoform.controls['dob'].dirty" class="error-msg">
+    <div [hidden]="!basicInfoform.controls['dob'].errors.required" class="alert alert-danger">Dob is required !.</div>
+    <div [hidden]="!basicInfoform.controls['dob'].errors.maxlength" class="alert alert-danger">Only 10 characters allowed !.</div>
+    <div [hidden]="!basicInfoform.controls['dob'].errors.minlength" class="alert alert-danger">Only 10 characters allowed !.</div>
+    <!--<div [hidden]="!basicInfoform.controls['dob'].errors.pattern" class="alert alert-danger">enter digit and "/" (forward slash) only!.</div>-->
+
+  </div>
+  <div class="form-group">
+    <label for="gender" class="required">Gender:</label>
+    <select class="form-select form-control" aria-label="Default select example" formControlName="gender" (change)="genderChange($event.target.value)">
+      <option selected value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <div *ngIf="basicInfoform.controls['gender'].errors && basicInfoform.controls['gender'].dirty" class="error-msg">
+    <div [hidden]="!basicInfoform.controls['gender'].errors.required" class="alert alert-danger">Gender is required !.</div>
+  </div>
+  <div class="form-group" *ngIf="showOtherFiled">
+    <label for="other" class="required">Other Gender:</label>
+    <input type="text" class="form-control" id="name" formControlName="other">
+  </div>
+</div>
+
+

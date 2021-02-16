@@ -1,0 +1,43 @@
+<div class="container" style="margin-top:100px">
+  <h6>
+    Student List
+  </h6>
+  <button class="btn btn-primary pull-right" (click)="redirect()">Add Student Info</button>
+  <!--<div class="row">
+    <div class="col-6">
+      <h5>Student List</h5>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-primary" (click)="redirect()">Add Student Info</button>
+    </div>
+  </div>-->
+  <table class="table table-striped" *ngIf="data.length>0" style="margin-top:20px;">
+    <thead>
+      <tr>
+        <th>Sno.</th>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stuInfo of data;let i=index">
+        <td>{{i+1}}</td>
+        <td (click)="edit(i+1)">{{stuInfo.student_name}}</td>
+        <td>{{stuInfo.email}}</td>
+        <td>{{stuInfo.mobile}}</td>
+        <td>{{stuInfo.city}}</td>
+        <td>{{stuInfo.state}}</td>
+        <td style="cursor:pointer;" (click)="edit(i+1)"><i class="fa fa-edit"></i></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <h4 *ngIf="data.length==0">No Data Available</h4>
+</div>
+
+
+
